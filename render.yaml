@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: abu-beaga-election
+    runtime: node
+    plan: free
+    region: ohio
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/session
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        sync: false
+      - key: NEON_AUTH_BASE_URL
+        value: https://ep-hidden-forest-b68mpt4e.neonauth.c-2.sa-east-1.aws.neon.tech/neondb/auth
+      - key: NEON_AUTH_JWKS_URL
+        value: https://ep-hidden-forest-b68mpt4e.neonauth.c-2.sa-east-1.aws.neon.tech/neondb/auth/.well-known/jwks.json

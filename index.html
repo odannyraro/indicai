@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Indicações para a eleição da diretoria da ABU Beagá."
+    />
+    <title>Eleição da diretoria · ABU Beagá</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="ABU Beagá — início">
+          <img class="brand-logo" src="./abubeaga_w.png" alt="ABU Beagá" />
+          <span class="brand-copy"><strong>ABU <i>Beagá</i></strong><small>ALIANÇA BÍBLICA UNIVERSITÁRIA DE BELO HORIZONTE</small></span>
+        </a>
+        <div class="topbar-right">
+          <span class="election-year" id="electionYearLabel">ELEIÇÃO 2026</span>
+          <button class="admin-toggle" id="adminToggle" type="button">
+            <span class="admin-icon" aria-hidden="true">⌘</span>
+            <span id="adminToggleText">Configurações</span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="dashboard-view hidden" id="dashboardView">
+          <div class="dashboard-heading">
+            <div><span class="eyebrow section-eyebrow">ADMINISTRAÇÃO CENTRAL</span><h1>Dashboard de eleições</h1><p>Gerencie eleições, publique a eleição principal e configure regras gerais para candidaturas.</p></div>
+            <div class="dashboard-actions">
+              <button class="button button-outline" id="changePasswordButton" type="button">Alterar minha senha</button>
+              <button class="button button-primary" id="createElectionButton" type="button">＋ Criar eleição</button>
+            </div>
+          </div>
+          <div class="dashboard-grid">
+            <section class="dashboard-card elections-dashboard">
+              <div class="settings-card-title"><div><span class="eyebrow section-eyebrow">CALENDÁRIO</span><h2>Eleições cadastradas</h2></div><span class="dashboard-count" id="electionCount"></span></div>
+              <div id="electionsList" class="elections-list"></div>
+            </section>
+            <form id="globalRulesForm" class="dashboard-card global-rules-card">
+              <span class="eyebrow section-eyebrow">APLICÁVEIS A TODAS AS ELEIÇÕES</span>
+              <h2>Regras globais para candidatos</h2>
+              <p>As regras aparecem na página da eleição e antes de cada indicação ou resposta.</p>
+              <label class="field">Requisitos<textarea name="rules" rows="9" required maxlength="5000"></textarea></label>
+              <button class="button button-dark button-small" type="submit">Salvar regras globais</button>
+            </form>
+          </div>
+        </section>
+
+        <div id="electionView">
+        <section class="hero">
+          <div class="event-details">
+            <div class="event-detail"><small>DATA E HORÁRIO</small><strong id="eventSummary">12 de novembro de 2026 · 19h</strong></div>
+            <div class="event-detail"><small>LOCAL</small><strong id="eventLocation">Igreja Presbiteriana de Belo Horizonte</strong></div>
+          </div>
+        </section>
+
+        <section class="admin-panel hidden" id="adminPanel" aria-label="Configurações administrativas">
+          <div class="admin-panel-heading">
+            <div><span class="eyebrow admin-eyebrow">PAINEL DE GESTÃO</span><h2>Configurações da eleição</h2><p id="settingsElectionTitle" class="settings-election-title"></p></div>
+            <span class="admin-access-badge">MODO ADMINISTRADOR</span>
+          </div>
+          <button class="button button-outline button-small dashboard-back" id="dashboardBackButton" type="button">← Voltar ao dashboard</button>
+          <div class="admin-settings-grid">
+            <form id="electionForm" class="settings-card">
+              <h3>Dados da eleição</h3>
+              <label>Ano<input name="year" type="number" min="2020" max="2100" required /></label>
+              <label>Data<input name="date" type="date" required /></label>
+              <label>Horário<input name="time" type="time" required /></label>
+              <label>Local<input name="eventLocation" type="text" placeholder="Local da assembleia" required /></label>
+              <button class="button button-dark button-small" type="submit">Salvar dados</button>
+            </form>
+            <div class="settings-card roles-settings">
+              <div class="settings-card-title"><h3>Cargos disponíveis</h3><button class="button button-outline button-small" id="addRoleButton" type="button">＋ Novo cargo</button></div>
+              <div id="roleSettingsList" class="role-settings-list"></div>
+            </div>
+          </div>
+          <p class="demo-note">As alterações ficam salvas no servidor. A sessão administrativa expira automaticamente após 8 horas.</p>
+        </section>
+
+        <section class="content-section">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow section-eyebrow">PARTICIPE DA ELEIÇÃO</div>
+              <h2>Cargos e indicações</h2>
+              <p>Conheça as oportunidades e indique alguém que possa servir com a gente.</p>
+            </div>
+            <div class="view-switch" role="tablist" aria-label="Visualização">
+              <button class="view-tab active" id="rolesTab" type="button" role="tab" aria-selected="true">Cargos</button>
+              <button class="view-tab" id="pendingTab" type="button" role="tab" aria-selected="false">Indicações pendentes <span id="pendingCount" class="tab-count">0</span></button>
+            </div>
+          </div>
+
+          <div id="rolesView">
+            <div class="board-toolbar">
+              <div class="board-legend">
+                <span class="legend-item"><i class="legend-dot pending-dot"></i>Pendente de aceitação</span>
+                <span class="legend-item"><i class="legend-dot accepted-dot"></i>Indicação aceita</span>
+                <span class="legend-item"><i class="legend-diamond"></i>Sucessão prevista</span>
+              </div>
+              <span class="board-count" id="roleCount"></span>
+            </div>
+            <div id="rolesGrid" class="roles-grid"></div>
+            <div class="empty-state hidden" id="emptyRoles">
+              <span class="empty-symbol">＋</span><h3>Nenhum cargo por aqui</h3>
+              <p>O administrador ainda não adicionou cargos para esta eleição.</p>
+            </div>
+          </div>
+
+          <div id="pendingView" class="hidden">
+            <div class="pending-intro">
+              <div class="pending-icon" aria-hidden="true">↗</div>
+              <div><h3>Você recebeu uma indicação?</h3><p>Veja abaixo as indicações que aguardam uma resposta. Antes de decidir, confira as regras para fazer parte da diretoria.</p></div>
+            </div>
+            <div id="pendingList" class="pending-list"></div>
+            <div class="empty-state hidden" id="emptyPending">
+              <span class="empty-symbol">✓</span><h3>Nenhuma indicação pendente</h3>
+              <p>Quando alguém indicar você, a indicação aparecerá nesta página.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="rules-callout">
+          <div class="rules-icon" aria-hidden="true">✦</div>
+          <div class="rules-copy"><span class="eyebrow">ANTES DE INDICAR OU ACEITAR</span><h2>Servir começa com um compromisso.</h2><p>Confira os requisitos para fazer parte da diretoria da ABU Beagá.</p></div>
+          <button class="button button-light" id="openRulesButton" type="button">Ler regras <span aria-hidden="true">↗</span></button>
+        </section>
+        </div>
+      </main>
+      <footer><span>ABU Beagá · Eleição da diretoria</span><span>Feito para construir juntos <span class="footer-heart">♥</span></span></footer>
+    </div>
+
+    <div class="modal-backdrop hidden" id="modalBackdrop">
+      <section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"></section>
+    </div>
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+    <script src="/auth-config.js"></script>
+    <script src="/auth-client.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

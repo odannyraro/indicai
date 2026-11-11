@@ -1,0 +1,20 @@
+{
+  "name": "abu-beaga-election",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "build": "esbuild auth-client.js --bundle --platform=browser --format=iife --minify --outfile=dist/auth-client.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@neon/auth": "^0.8.2",
+    "@neon/config": "^1.14.0",
+    "@neon/env": "^2.1.3",
+    "esbuild": "^0.28.2",
+    "jose": "^6.2.17",
+    "pg": "^8.13.1"
+  }
+}

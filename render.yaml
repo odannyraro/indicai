@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: abu-beaga-election
+    name: indica-abubeaga
     runtime: node
     plan: free
     region: ohio

@@ -284,6 +284,7 @@ function staticFile(response, pathname) {
     "/app.js": "app.js",
     "/auth-client.js": "dist/auth-client.js",
     "/abubeaga_w.png": "abubeaga_w.png",
+    "/abubeaga_b.png": "abubeaga_b.png",
   };
   const filename = files[pathname];
   if (!filename) {
@@ -291,7 +292,7 @@ function staticFile(response, pathname) {
     response.end("Not found");
     return;
   }
-  const types = { "index.html": "text/html; charset=utf-8", "styles.css": "text/css; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "dist/auth-client.js": "text/javascript; charset=utf-8", "abubeaga_w.png": "image/png" };
+  const types = { "index.html": "text/html; charset=utf-8", "styles.css": "text/css; charset=utf-8", "app.js": "text/javascript; charset=utf-8", "dist/auth-client.js": "text/javascript; charset=utf-8", "abubeaga_w.png": "image/png", "abubeaga_b.png": "image/png" };
   response.writeHead(200, {
     "Content-Type": types[filename],
     "X-Content-Type-Options": "nosniff",

@@ -354,7 +354,7 @@ function showForgotPasswordForm() {
     try {
       const { error } = await window.neonAuth.requestPasswordReset({
         email,
-        redirectTo: `${location.origin}/`,
+        redirectTo: location.origin,
       });
       if (error) throw new Error(error.message);
       closeModal();

@@ -38,7 +38,7 @@ O repositório está conectado ao projeto Neon `falling-credit-79519565` (São P
 O repositório inclui `render.yaml` para criar o serviço web gratuito no Render. O banco PostgreSQL gratuito é provisionado no Neon; não é necessário usar GitHub Pages.
 
 1. Use a URL de conexão **pooled** do Neon como `DATABASE_URL` no Render. Mantenha esse valor secreto.
-2. No Render, crie um **Blueprint** a partir do repositório. O `render.yaml` instala dependências e empacota o cliente Neon Auth. Configure `DATABASE_URL`; as URLs públicas de Neon Auth já estão declaradas no Blueprint.
+2. No Render, crie um **Blueprint** a partir do repositório. O `render.yaml` instala dependências e empacota o cliente Neon Auth. Configure `DATABASE_URL`; as URLs públicas de Neon Auth já estão declaradas no Blueprint. Confirme em **Neon → Auth → Configuration → Domains** que a origem exata do serviço Render está autorizada (com `https://`, sem barra final).
 3. Entre com a conta Neon Auth do proprietário do projeto. Para definir a senha inicial ou recuperar acesso, use **Esqueci minha senha** na tela de login. O cadastro público está desligado; crie cada conta adicional pelas ferramentas de gestão de Auth do Neon antes de compartilhar o acesso. Cada usuário usa e-mail e senha do Neon Auth, e pode alterar a própria senha pelo dashboard do app.
 4. Antes de abrir o site ao público, configure um provedor SMTP próprio no Neon para entrega confiável de mensagens. O SMTP compartilhado é limitado e destinado a desenvolvimento.
 
